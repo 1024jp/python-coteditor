@@ -13,4 +13,4 @@ Highlighter
 ------------
 このリポジトリには入っていないが、デフォルトの改良版が以下に置いてある。
 
-- [CotEditor用シンタックス定義 -Goodies -Works //ヴォルフロッシュ](wolfrosch.com/works/goodies/coteditor_syntax)
+- [CotEditor用シンタックス定義 -Goodies -Works //ヴォルフロッシュ](http://wolfrosch.com/works/goodies/coteditor_syntax)
