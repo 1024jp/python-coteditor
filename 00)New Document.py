@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
-"""Open New Document with Python Template
+"""Open New Document on CotEditor with Python Template.
+
+This is a CotEditor script.
 
 %%%{CotEditorXInput=None}%%%
 %%%{CotEditorXOutput=InsertAfterSelection}%%%
@@ -8,8 +10,8 @@
 
 from __future__ import print_function
 
-__version__ = '1.0'
-__date__ = '2012-12-29'
+__version__ = '1.0.1'
+__date__ = '2013-02-16'
 __author__ = '1024jp <http://wolfrosch.com/>'
 __license__ = "Creative Commons Attribution-NonCommercial 3.0 Unported License"
 
@@ -19,14 +21,14 @@ from datetime import date
 
 # template ----------------------------------------------------------
 
-author = '1024jp <http://wolfrosch.com/>'
+AUTHOR = '1024jp <http://wolfrosch.com/>'
 
-template = """#!/usr/bin/env python
+TEMPLATE = """#!/usr/bin/env python
 
 from __future__ import division, print_function
 
-__date__ = '{}'
-__author__ = '{}'
+__date__ = '{date}'
+__author__ = '{author}'
 
 
 main():
@@ -35,26 +37,30 @@ main():
 
 if __name__ == "__main__":
     main()
-""".format(date.today(), author)
+""".format(date=date.today(), author=AUTHOR)
 
 
 # main --------------------------------------------------------------
 
-# osascript to open new CotEditor document
-open_new_document = """
-on run
-    tell application "CotEditor"
-        make new document
-        set coloring style of front document to "Python"
-        set theEncoding to IANA charset of front document of application "CotEditor"
-    end tell
-end run
-"""
+def run_osascript(script):
+    """Run osascript."""
+    p = Popen(['osascript', '-'], stdin=PIPE, stdout=PIPE)
+    stdout, stderr = p.communicate(script)
+
+    return stdout.rstrip()
 
 
-# open new document on CotEditor
-p = Popen(['osascript', '-'], stdin=PIPE, stdout=PIPE)
-p.communicate(open_new_document)
+def main():
+    # open new document on CotEditor
+    run_osascript('tell application "CotEditor" to make new document')
+    
+    # set coloring style to Python
+    run_osascript('tell application "CotEditor" '
+                  'to set coloring style of front document to "Python"')
+    
+    # insert template
+    print(TEMPLATE, end='')
 
-# insert template
-print(template, end='')
+
+if __name__ == "__main__":
+    main()

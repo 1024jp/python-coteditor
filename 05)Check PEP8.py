@@ -6,8 +6,8 @@ Check Python source code of the current document on CotEditor with pep8.
 This is a CotEditor script.
 """
 
-__version__ = '1.0.1'
-__date__ = '2013-02-07'
+__version__ = '1.0.2'
+__date__ = '2013-02-16'
 __author__ = '1024jp <http://wolfrosch.com/>'
 __license__ = 'Creative Commons Attribution-NonCommercial 3.0 Unported License'
 
@@ -34,8 +34,8 @@ def run_osascript(script):
 
 def main():
     # get filepath of the front document on CotEditor
-    filepath = run_osascript('tell application "CotEditor" to '
-                             'return path of front document')
+    filepath = run_osascript('tell application "CotEditor" '
+                             'to return path of front document')
 
     # check pep8
     results = Popen([PEP8, filepath], stdout=PIPE).stdout
@@ -46,4 +46,5 @@ def main():
         sys.stderr.write(line.split(':', 1)[-1])
 
 
-main()
+if __name__ == "__main__":
+    main()
