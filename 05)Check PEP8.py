@@ -24,19 +24,7 @@ PEP8 = '/usr/local/bin/pycodestyle'
 
 # main --------------------------------------------------------------
 
-def run_osascript(script):
-    """Run osascript."""
-    p = Popen(['osascript', '-'], stdin=PIPE, stdout=PIPE)
-    stdout, stderr = p.communicate(script)
-
-    return stdout.rstrip()
-
-
-def main():
-    # get filepath of the front document on CotEditor
-    filepath = run_osascript('tell application "CotEditor" '
-                             'to return path of front document')
-
+def main(filepath):
     # check pep8
     results = Popen([PEP8, filepath], stdout=PIPE).stdout
 
@@ -47,4 +35,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    filepath = sys.argv[1]
+    main(filepath)
