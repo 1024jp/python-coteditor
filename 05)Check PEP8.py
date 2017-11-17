@@ -6,8 +6,8 @@ Check Python source code of the current document on CotEditor with pep8.
 This is a CotEditor script.
 """
 
-__version__ = '1.0.2'
-__date__ = '2013-02-16'
+__version__ = '1.1.0'
+__date__ = '2017-10-17'
 __author__ = '1024jp <http://wolfrosch.com/>'
 __license__ = 'Creative Commons Attribution-NonCommercial 3.0 Unported License'
 
@@ -18,8 +18,8 @@ from subprocess import Popen, PIPE
 
 # setting -----------------------------------------------------------
 
-# path to pep8
-PEP8 = '/usr/local/bin/pep8'
+# path to pycodestyle
+PEP8 = '/usr/local/bin/pycodestyle'
 
 
 # main --------------------------------------------------------------
@@ -41,7 +41,7 @@ def main():
     results = Popen([PEP8, filepath], stdout=PIPE).stdout
 
     # write results to CotEditor's Script Errors window
-    sys.stderr.write('pep8-> ' + os.path.basename(filepath) + '\n')
+    sys.stderr.write('checked -> ' + os.path.basename(filepath) + '\n')
     for line in results:
         sys.stderr.write(line.split(':', 1)[-1])
 
