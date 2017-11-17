@@ -5,12 +5,12 @@
 This is a CotEditor script.
 
 %%%{CotEditorXInput=None}%%%
-%%%{CotEditorXOutput=InsertAfterSelection}%%%
+%%%{CotEditorXOutput=NewDocument}%%%
 """
 
 from __future__ import print_function
 
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 __date__ = '2013-02-16'
 __author__ = '1024jp <http://wolfrosch.com/>'
 __license__ = "Creative Commons Attribution-NonCommercial 3.0 Unported License"
@@ -51,15 +51,12 @@ def run_osascript(script):
 
 
 def main():
-    # open new document on CotEditor
-    run_osascript('tell application "CotEditor" to make new document')
-    
-    # set coloring style to Python
-    run_osascript('tell application "CotEditor" '
-                  'to set coloring style of front document to "Python"')
-    
     # insert template
     print(TEMPLATE, end='')
+
+#     # set coloring style to Python
+#     run_osascript('tell application "CotEditor" '
+#                   'to set coloring style of front document to "Python"')
 
 
 if __name__ == "__main__":
