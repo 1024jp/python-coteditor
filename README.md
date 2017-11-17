@@ -10,8 +10,8 @@ CotEditor用のPython向けスクリプトセット。
 ---------------------------------
 - New Document
     テンプレート入りの新しいドキュメントを開く
-- Check PEP8
-    開いてるドキュメントをPEP8チェックにかける
+- Check Code Style
+    開いてるドキュメントを pycodstyle (ex-PEP8) チェックにかける
 - Templates/
     スニペット
 
